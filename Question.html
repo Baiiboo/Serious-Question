@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Question</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        #message {
+            color: pink;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        .button {
+            margin: 10px;
+            padding: 20px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #noButton {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="message">Will you marry me?</div>
+        <img src="Untitled design-3.jpg" alt="Image" id="image">
+        <button class="button" onclick="handleResponse('yes')">Yes</button>
+        <button class="button" id="noButton" onclick="handleResponse('no')">No</button>
+    </div>
+
+    <script>
+        function handleResponse(response) {
+            var content = document.getElementById('content');
+            var message = document.getElementById('message');
+            var image = document.getElementById('image');
+
+            if (response === 'yes') {
+                message.innerText = 'Aww really?';
+                image.src = 'Untitled design.jpg';
+                content.innerHTML = message.outerHTML + image.outerHTML + 
+                                    '<button class="button" onclick="finalStep(\'yes\')">Yes</button>' +
+                                    '<button class="button" id="noButton" onclick="finalStep(\'no\')">No</button>';
+            } else {
+                message.innerText = 'Please say YES';
+                image.src = 'Untitled design-4.jpg';
+                content.innerHTML = message.outerHTML + image.outerHTML + 
+                                    '<button class="button" onclick="handleResponse(\'yes\')">Yes</button>' +
+                                    '<button class="button" id="noButton" onclick="moveNoButton()">No</button>';
+            }
+        }
+
+        function finalStep(response) {
+            var content = document.getElementById('content');
+            var message = document.getElementById('message');
+            var image = document.getElementById('image');
+
+            if (response === 'yes') {
+                message.innerText = 'Yay! Lesss Gooo';
+                image.src = 'Untitled design-5.jpg';
+                content.innerHTML = message.outerHTML + image.outerHTML;
+            } else {
+                handleResponse('no');
+            }
+        }
+
+        function moveNoButton() {
+            var noButton = document.getElementById('noButton');
+            noButton.style.left = Math.random() * 200 + 'px';
+            noButton.style.top = Math.random() * 100 + 'px';
+        }
+    </script>
+</body>
+</html>
